@@ -2,15 +2,13 @@
   text-align: center;
 }
 
+.App-button {
+  background-color: #282c34;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -24,15 +22,71 @@
   color: white;
 }
 
+.App-header-real {
+  font-size: 24px;
+  background-color: #b37709;
+  color: white;
+  font-weight: bold;
+  display: flex;
+}
+
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.left {
+  flex: 0;
+}
+
+.center {
+  flex: 1;
+  text-align: center;
+}
+
+.burger-button {
+  background-color: #b37709;
+  border: none;
+  cursor: pointer;
+}
+
+.burger-button-modal {
+  background-color: #323640;
+  border: none;
+  cursor: pointer;
+  margin-left: 140px;
+}
+
+.sliding-menu {
+  position: absolute;
+  top: 0;
+  left: -200px;
+  width: 200px;
+  height: 100%;
+  background-color: #323640;
+  transition: left 0.3s linear;
+}
+
+.sliding-menu.open {
+  left: 0; 
+}
+
+.Ham-text {
+  color: red;
+}
+
+.Menu-buttons {
+  font-size: 25px;
+  color: #b37709;
+  background-color: white;
+  cursor: pointer;
+  margin-right: 200px;
+}
+
+.button1 {
+  margin-bottom: 100px;
+  
+}
+
+.button2 {
+  margin-top: 50px;
 }
