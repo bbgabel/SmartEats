@@ -14,10 +14,8 @@ export default function Slider() {
         <div>
             
             <header className="Slider">
-                <button className="burger-button" onClick={toggleHam}>
-                    <div className="left">
+                <button className="burger-button left" onClick={toggleHam}>
                         <Hamburger />
-                    </div>
                 </button>
             <div className="center">
             Welcome to SmartEatz!
