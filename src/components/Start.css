@@ -4,14 +4,18 @@
 
 .Start {
     background-color: #282c34;
-    min-height: 97vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     font-size: calc(10px + 2vmin);
     color: white;
-    display: grid;
+}
+
+.bottom {
+    background-color: #282c34;
+    min-height: 17vh;
 }
 
 .dropdown {
@@ -26,6 +30,7 @@
 .desc {
     font-weight: bold;
     flex: 0;
+    margin-bottom: 25%;
 }
 
 .textbox {
@@ -54,5 +59,6 @@
     color: white;
     font-size: 20px;
     cursor: pointer;
-    width: 400px;
+    padding: 12px 30px;
+    margin: 10px;
 }
