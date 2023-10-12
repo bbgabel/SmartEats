@@ -49,6 +49,10 @@
     height: 100%;
     background-color: #323640;
     transition: left 0.3s linear;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: -100px -10px;
   }
   
   .sliding-menu.open {
@@ -57,17 +61,16 @@
 
   .Menu-buttons {
     font-size: 25px;
-    color: #b37709;
-    background-color: white;
+    color: white;
     cursor: pointer;
-    margin-right: 200px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    text-decoration: none;
+    white-space: nowrap;
   }
-  
-  .button1 {
-    margin-bottom: 100px;
-    
-  }
-  
-  .button2 {
-    margin-top: 50px;
+
+  .Menu-buttons:hover {
+    background-color: rgba(255, 255, 255, 0.254);
   }

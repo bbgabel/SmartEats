@@ -22,16 +22,20 @@ export default function Slider() {
             </div>
             </header>
             <div className={`sliding-menu ${isHamOpen ? 'open' : ''}`}>
-            <button className="burger-button-modal" onClick={toggleHam}>
-            <Hamburger />
-            </button>
-            <Link to="/" className="Menu-buttons button2">
-            <i className="fas fa-house fa-xs"> Home</i>
-            </Link>
-            <p />
-            <Link to="/About" className="Menu-buttons button1">
-            <i className="fas fa-users fa-xs"> About Us</i>
-            </Link>
+                <button className="burger-button-modal" onClick={toggleHam}>
+                <Hamburger />
+                </button>
+                <Link to="/" className="Menu-buttons">
+                <i className="fas fa-house fa-xs"> Home</i>
+                </Link>
+                <p />
+                <Link to="/About" className="Menu-buttons">
+                <i className="fas fa-users fa-xs"> About Us</i>
+                </Link>
+                <p />
+                <Link to="/Start" className="Menu-buttons">
+                <i className="fas fa-cloud-upload-alt fa-xs"> Start</i>
+                </Link>
             </div>
 
         </div>
