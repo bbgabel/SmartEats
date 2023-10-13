@@ -69,7 +69,7 @@ export default function Start() {
 
     return (
         <div class="Pre-Start">
-            <Slider />
+            <Slider text="Please enter your information"/>
             <div>
                 <div class="Start">
                     <div className="desc">

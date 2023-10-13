@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Hamburger from './Hamburger';
 
-export default function Slider() {
+export default function Slider({text}) {
 
     const [isHamOpen, setIsHamOpen] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Slider() {
                         <Hamburger />
                 </button>
             <div className="center">
-            Welcome to SmartEatz!
+            {text}
             </div>
             </header>
             <div className={`sliding-menu ${isHamOpen ? 'open' : ''}`}>

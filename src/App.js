@@ -11,7 +11,7 @@ function Home() {
 
   return (
     <div className="App">
-        <Slider />
+        <Slider text="Welcome to SmartEatz!"/>
       <header className="App-header">
         <h3>Click the logo to started!</h3>
         <Link to="/Start" className="App-button">
