@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //import { Link } from 'react-router-dom';
 import Slider from './Items/Slider';
 import './Start.css';
 
 export default function Start() {
 
-    const [selectedAge, setSelectedAge] = useState("");
+    const [age, setAge] = useState("");
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
     const [sex, setSex] = useState("");
     const [activity, setActivity] = useState("");
     const [valid, setValid] = useState(false);
+    const [ready, setReady] = useState(false);
 
     const handleAgeChange = (event) => {
-        setSelectedAge(event.target.value);
+        setAge(event.target.value);
     };
 
     const handleHeightChange = (event) => {
@@ -40,6 +41,18 @@ export default function Start() {
             setValid(false);
         }
     }
+
+    const checkResults = (age, height, weight, sex, activity) => {
+        if (age && height && weight && sex && activity) {
+            setReady(true);
+        } else {
+            setReady(false);
+        }
+    }
+
+    useEffect(() => {
+        checkResults(age, height, weight, sex, activity);
+    }, [age, height, weight, sex, activity]);
   
   const ageOptions = [];
   for (let age = 12; age <= 80; age++) {
@@ -61,13 +74,13 @@ export default function Start() {
                 <div class="Start">
                     <div className="desc">
                         <label className="desc">Age:      </label>
-                        <select value={selectedAge} onChange={handleAgeChange} className="dropdown">
+                        <select value={age} onChange={handleAgeChange} className="dropdown">
                         <option value="">-- Select Age --</option>
                         {ageOptions.map((age) => (
                         <option> {age} </option>
                         ))}
                         </select>
-                        {selectedAge && (
+                        {age && (
                             <label>
                             <i className="fas fa-check fa-xl green"></i>
                             </label>
@@ -139,11 +152,13 @@ export default function Start() {
 
                 </div>
                 <div className="bottom">
+                        {ready && (
                         <button className="next">
                             Food Preferences
                             <br></br>
                         <i className="fas fa-arrow-right fa-xl"></i>
                         </button>
+                        )}
                     </div>
             </div>
         </div>
