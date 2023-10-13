@@ -4,7 +4,7 @@
 
 .Start {
     background-color: #282c34;
-    min-height: 80vh;
+    min-height: 25vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,7 +15,24 @@
 
 .bottom {
     background-color: #282c34;
-    min-height: 17vh;
+    min-height: 34vh;
+
+}
+
+.checkbox {
+    background-color: #282c34;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 38vh;
+}
+
+.box {
+    width: 15px;
+    height: 15px;
 }
 
 .dropdown {
@@ -30,7 +47,6 @@
 .desc {
     font-weight: bold;
     flex: 0;
-    margin-bottom: 25%;
 }
 
 .textbox {
@@ -60,5 +76,5 @@
     font-size: 20px;
     cursor: pointer;
     padding: 12px 30px;
-    margin: 10px;
+    margin-top: 8%;
 }

@@ -53,7 +53,7 @@ export default function Start() {
     useEffect(() => {
         checkResults(age, height, weight, sex, activity);
     }, [age, height, weight, sex, activity]);
-  
+
   const ageOptions = [];
   for (let age = 12; age <= 80; age++) {
     ageOptions.push(age);
@@ -65,6 +65,11 @@ export default function Start() {
             let temp = i + "' " + j + "\"";
             heightOptions.push(temp);
         }
+    }
+
+    const check = (event) => {
+        console.log(event.target.checked);
+        console.log(event.target.id);
     }
 
     return (
@@ -146,15 +151,25 @@ export default function Start() {
                             </label>
                         )}
                     </div>
-
-
-
-
                 </div>
+
+                <div className="checkbox">
+                    <label>Lactose Intolerant</label>
+                    <input type="checkbox" id="lactose" onClick={check} className="box" />
+                    <br></br>
+                    <label>Gluten Free</label>
+                    <input type="checkbox" id="gluten" onClick={check} className="box" />
+                    <br></br>
+                    <label>Nut Free</label>
+                    <input type="checkbox" id="nut" onClick={check} className="box" />
+                </div>
+
+
                 <div className="bottom">
+
                         {ready && (
                         <button className="next">
-                            Food Preferences
+                            See my plan!
                             <br></br>
                         <i className="fas fa-arrow-right fa-xl"></i>
                         </button>
