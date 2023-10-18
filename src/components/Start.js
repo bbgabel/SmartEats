@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 //import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Slider from './Items/Slider';
 import './Start.css';
 
@@ -58,6 +59,27 @@ export default function Start() {
   for (let age = 12; age <= 80; age++) {
     ageOptions.push(age);
   }
+
+  const requestData = {
+    age,
+    height,
+    weight,
+    sex,
+    activity,
+  }
+
+  const sendApiRequest = () => {
+    axios.post('http://localhost:3000/api', requestData)
+    .then(response => {
+        // Handle the response from the server here
+        const calculatedValues = response.data;
+        console.log(calculatedValues);
+        // Update your component's state or perform any necessary actions
+      })
+      .catch(error => {
+        // Handle any errors here
+      })
+      };
 
   const heightOptions = [];
     for (let i = 4; i <= 7; i++) {
@@ -168,7 +190,7 @@ export default function Start() {
                 <div className="bottom">
 
                         {ready && (
-                        <button className="next">
+                        <button className="next" onClick={sendApiRequest}>
                             See my plan!
                             <br></br>
                         <i className="fas fa-arrow-right fa-xl"></i>
