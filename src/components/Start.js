@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 //import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Slider from './Items/Slider';
+import BodyType from './Items/BodyType';
 import './Start.css';
 
 export default function Start() {
@@ -13,6 +14,7 @@ export default function Start() {
     const [activity, setActivity] = useState("");
     const [valid, setValid] = useState(false);
     const [ready, setReady] = useState(false);
+    const [body, setBody] = useState(null);
 
     const handleAgeChange = (event) => {
         setAge(event.target.value);
@@ -43,8 +45,12 @@ export default function Start() {
         }
     }
 
-    const checkResults = (age, height, weight, sex, activity) => {
-        if (age && height && weight && sex && activity) {
+    const updateActiveButton = (buttonID) => {
+        setBody(buttonID);
+    }
+
+    const checkResults = (age, height, weight, sex, activity, body) => {
+        if (age && height && weight && sex && activity && body) {
             setReady(true);
         } else {
             setReady(false);
@@ -52,8 +58,8 @@ export default function Start() {
     }
 
     useEffect(() => {
-        checkResults(age, height, weight, sex, activity);
-    }, [age, height, weight, sex, activity]);
+        checkResults(age, height, weight, sex, activity, body);
+    }, [age, height, weight, sex, activity, body]);
 
   const ageOptions = [];
   for (let age = 12; age <= 80; age++) {
@@ -66,6 +72,7 @@ export default function Start() {
     weight,
     sex,
     activity,
+    body,
   }
 
   const sendApiRequest = () => {
@@ -87,11 +94,6 @@ export default function Start() {
             let temp = i + "' " + j + "\"";
             heightOptions.push(temp);
         }
-    }
-
-    const check = (event) => {
-        console.log(event.target.checked);
-        console.log(event.target.id);
     }
 
     return (
@@ -175,15 +177,8 @@ export default function Start() {
                     </div>
                 </div>
 
-                <div className="checkbox">
-                    <label>Lactose Intolerant</label>
-                    <input type="checkbox" id="lactose" onClick={check} className="box" />
-                    <br></br>
-                    <label>Gluten Free</label>
-                    <input type="checkbox" id="gluten" onClick={check} className="box" />
-                    <br></br>
-                    <label>Nut Free</label>
-                    <input type="checkbox" id="nut" onClick={check} className="box" />
+                <div>
+                    <BodyType updateActiveButton={updateActiveButton} />
                 </div>
 
 

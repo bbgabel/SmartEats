@@ -24,7 +24,7 @@
     color: white;
     font-weight: bold;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     min-height: 38vh;
@@ -68,6 +68,16 @@
     position: absolute;
     margin-left: 10px;
     margin-top: 7px;
+}
+
+.bodytype {
+    background-color: white;
+    cursor: pointer;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
 }
 
 .next {

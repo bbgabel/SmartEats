@@ -72,3 +72,38 @@
   .Menu-buttons:hover {
     background-color: rgba(255, 255, 255, 0.254);
   }
+
+  .bodytype {
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.3s ease;
+    background-color: yellowgreen;
+    
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+  width: 15px;
+  height: 15px;
+}
+
+.checkbox {
+  background-color: #282c34;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 38vh;
+}
+
+.blue-button {
+
+  margin-bottom: 30px;
+  
+}
