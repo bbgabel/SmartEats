@@ -4,7 +4,7 @@
 
 .Start {
     background-color: #282c34;
-    min-height: 25vh;
+    min-height: 18vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,19 +15,8 @@
 
 .bottom {
     background-color: #282c34;
-    min-height: 34vh;
+    min-height: 8vh;
 
-}
-
-.checkbox {
-    background-color: #282c34;
-    color: white;
-    font-weight: bold;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    min-height: 38vh;
 }
 
 .box {
@@ -71,7 +60,6 @@
 }
 
 .bodytype {
-    background-color: white;
     cursor: pointer;
 }
 
@@ -86,5 +74,10 @@
     font-size: 20px;
     cursor: pointer;
     padding: 12px 30px;
-    margin-top: 8%;
+    margin-top: 3%;
+}
+
+.bottom-filler {
+    background-color: #282c34;
+    min-height: 6vh;
 }

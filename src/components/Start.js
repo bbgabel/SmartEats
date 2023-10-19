@@ -100,6 +100,15 @@ export default function Start() {
         <div class="Pre-Start">
             <Slider text="Please enter your information"/>
             <div>
+                <div className="bottom">
+                    {ready && (
+                    <button className="next" onClick={sendApiRequest}>
+                        See my plan!
+                        <br></br>
+                    <i className="fas fa-arrow-right fa-xl"></i>
+                    </button>
+                    )}
+                </div>
                 <div class="Start">
                     <div className="desc">
                         <label className="desc">Age:      </label>
@@ -145,6 +154,7 @@ export default function Start() {
                         ) : (
                             <i className="fas fa-check fa-xl green"></i>
                         )}
+                        
                     </div>
 
                     <div className="desc">
@@ -180,18 +190,9 @@ export default function Start() {
                 <div>
                     <BodyType updateActiveButton={updateActiveButton} />
                 </div>
+            </div>
+            <div className="bottom-filler">
 
-
-                <div className="bottom">
-
-                        {ready && (
-                        <button className="next" onClick={sendApiRequest}>
-                            See my plan!
-                            <br></br>
-                        <i className="fas fa-arrow-right fa-xl"></i>
-                        </button>
-                        )}
-                    </div>
             </div>
         </div>
     )

@@ -76,9 +76,7 @@
   .bodytype {
     cursor: pointer;
     padding: 10px;
-    transition: 0.3s ease;
-    background-color: yellowgreen;
-    
+    background-color: white;
 }
 
 .label {
@@ -103,7 +101,6 @@
 }
 
 .blue-button {
-
   margin-bottom: 30px;
-  
+  background-color: #53266e;
 }
