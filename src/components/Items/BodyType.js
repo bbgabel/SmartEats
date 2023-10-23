@@ -6,9 +6,11 @@ import swole from './swole.jpg';
 
 
 
-export default function BodyType({updateActiveButton} ) {
+export default function BodyType({updateActiveButton, updateDesiredWeight} ) {
 
     const [activeButton, setActiveButton] = useState(null);
+    const [desiredWeight, setWeight] = useState("");
+    const [valid, setValid] = useState(false);
 
     const handleClick = (buttonID) => {
         setActiveButton(buttonID);
@@ -18,6 +20,21 @@ export default function BodyType({updateActiveButton} ) {
     const check = (event) => {
         console.log(event.target.checked);
         console.log(event.target.id);
+    }
+
+    const handleWeightChange = (event) => {
+        const input = event.target.value;
+        const newInput = parseInt(input);
+
+        if (!isNaN(newInput) && newInput >= 80 && newInput <= 300) {
+            setWeight(newInput);
+            setValid(true);
+            updateDesiredWeight(newInput);
+        } else {
+            setWeight(input);
+            setValid(false);
+            updateDesiredWeight("");
+        }
     }
 
     return (
@@ -45,6 +62,25 @@ export default function BodyType({updateActiveButton} ) {
                     </div>
 
                     <div>
+                    <div className="desc">
+                        <div>
+                        <label className="desc">Desired Weight (lbs):</label>
+                        </div>
+                        <input
+                        className="textbox"
+                        placeholder="Enter weight"
+                        type="text"
+                        value={desiredWeight}
+                        onChange={handleWeightChange}
+                        />
+                        {!valid ? (
+                            <i className="fas fa-x fa-l red"></i>
+                        ) : (
+                            <i className="fas fa-check fa-xl green"></i>
+                        )}
+                        
+                        </div>
+                        <br></br><br></br><br></br><br></br><br></br>
                         <div>
                             <label>Lactose Intolerant</label>
                         </div>

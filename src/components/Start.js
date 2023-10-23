@@ -15,6 +15,7 @@ export default function Start() {
     const [valid, setValid] = useState(false);
     const [ready, setReady] = useState(false);
     const [body, setBody] = useState(null);
+    const [desiredWeight, setDesiredWeight] = useState("");
 
     const handleAgeChange = (event) => {
         setAge(event.target.value);
@@ -49,8 +50,12 @@ export default function Start() {
         setBody(buttonID);
     }
 
-    const checkResults = (age, height, weight, sex, activity, body) => {
-        if (age && height && weight && sex && activity && body) {
+    const updateDesiredWeight = (num) => {
+        setDesiredWeight(num);
+    }
+
+    const checkResults = (age, height, weight, desiredWeight, sex, activity, body) => {
+        if (age && height && weight && desiredWeight && sex && activity && body) {
             setReady(true);
         } else {
             setReady(false);
@@ -58,8 +63,8 @@ export default function Start() {
     }
 
     useEffect(() => {
-        checkResults(age, height, weight, sex, activity, body);
-    }, [age, height, weight, sex, activity, body]);
+        checkResults(age, height, weight, desiredWeight, sex, activity, body);
+    }, [age, height, weight, desiredWeight, sex, activity, body]);
 
   const ageOptions = [];
   for (let age = 12; age <= 80; age++) {
@@ -70,6 +75,7 @@ export default function Start() {
     age,
     height,
     weight,
+    desiredWeight,
     sex,
     activity,
     body,
@@ -188,7 +194,7 @@ export default function Start() {
                 </div>
 
                 <div>
-                    <BodyType updateActiveButton={updateActiveButton} />
+                    <BodyType updateActiveButton={updateActiveButton} updateDesiredWeight={updateDesiredWeight} />
                 </div>
             </div>
             <div className="bottom-filler">
