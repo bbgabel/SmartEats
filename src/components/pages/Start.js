@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Slider from '../Items/Slider';
 import BodyType from '../Items/BodyType';
+import { Link } from 'react-router-dom';
 import './Start.css';
 
 export default function Start() {
@@ -108,11 +109,11 @@ export default function Start() {
             <div>
                 <div className="bottom">
                     {ready && (
-                    <button className="next" onClick={sendApiRequest}>
+                    <Link to='/MealPlan' className="next" onClick={sendApiRequest}>
                         See my plan!
                         <br></br>
                     <i className="fas fa-arrow-right fa-xl"></i>
-                    </button>
+                    </Link>
                     )}
                 </div>
                 <div class="Start">

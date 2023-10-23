@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Start from './components/pages/Start';
-import logo from './components/Items/img/logo.jpg';
 import About from './components/pages/About';
+import MealPlan from './components/pages/MealPlan';
+import logo from './components/Items/img/logo.jpg';
 import Slider from './components/Items/Slider';
 import './App.css';
 import './components/Items/Items.css'
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Start" element={<Start />} />
         <Route path="/About" element={<About />} />
+        <Route path="/MealPlan" element={<MealPlan />} />
       </Routes>
     </BrowserRouter>
   );
