@@ -80,3 +80,26 @@
     background-color: #282c34;
     min-height: 10vh;
 }
+
+.About {
+    background-color: #282c34;
+    min-height: 150vh;
+}
+
+.profile-pic {
+    height: 200px;
+    width: 140px;
+}
+
+.dividor-bottom {
+    height: 3px;
+    width: 100%;
+    margin-top: 160px;
+    margin-bottom: 30px
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

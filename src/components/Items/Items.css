@@ -104,3 +104,43 @@
   margin-bottom: 30px;
   background-color: #53266e;
 }
+
+.picture-frame {
+  width: 140px;      /* Set the width of the box */
+  height: 200px;     /* Set the height of the box */
+  border: 2px solid gray; /* Add a border with a color (black in this case) */
+
+  margin: 20px;      /* Add margin around the box to create spacing */
+  padding: 10px;     /* Add padding inside the box */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Add a box shadow */
+  border-radius: 10px; /* Add rounded corners */
+}
+
+.desc-profile {
+  background-color: gray;
+  height: 140px;
+  width: 300px;
+  margin: 20px -80px;
+  border-radius: 10px;
+  overflow-y: scroll;
+  max-height: 140px;
+}
+
+.desc-name {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+}
+
+.desc-role {
+  font-style: italic;
+  color: #b37709;
+}
+
+.desc-font {
+  font-size: 14px;
+  color: white;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
