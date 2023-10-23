@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Items.css';
-import lean from './lean.jpg';
-import jacked from './jacked.jpg';
-import swole from './swole.jpg';
+import lean from './img/lean.jpg';
+import jacked from './img/jacked.jpg';
+import swole from './img/swole.jpg';
 
 
 

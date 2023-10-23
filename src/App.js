@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Start from './components/Start';
-import logo from './components/logo.jpg';
+import logo from './components/Items/img/logo.jpg';
 import About from './components/About';
 import Slider from './components/Items/Slider';
 import './App.css';
