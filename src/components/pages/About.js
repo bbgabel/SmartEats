@@ -1,11 +1,11 @@
 import React from 'react';
 import './Start.css';
-import Slider from './Items/Slider';
-import Profile from './Items/Profile';
+import Slider from '../Items/Slider';
+import Profile from '../Items/Profile';
 
-import Gabel from './Items/img/Gabel.jpeg';
-import Tucker from './Items/img/Tucker.jpg';
-import nobody from './Items/img/nobody.jpg';
+import Gabel from '../Items/img/Gabel.jpeg';
+import Tucker from '../Items/img/Tucker.jpg';
+import nobody from '../Items/img/nobody.jpg';
 
 export default function About() {
     return (

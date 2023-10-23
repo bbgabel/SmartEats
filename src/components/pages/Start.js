@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 //import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Slider from './Items/Slider';
-import BodyType from './Items/BodyType';
+import Slider from '../Items/Slider';
+import BodyType from '../Items/BodyType';
 import './Start.css';
 
 export default function Start() {

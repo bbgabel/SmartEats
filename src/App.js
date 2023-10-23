@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import Start from './components/Start';
+import Start from './components/pages/Start';
 import logo from './components/Items/img/logo.jpg';
-import About from './components/About';
+import About from './components/pages/About';
 import Slider from './components/Items/Slider';
 import './App.css';
 import './components/Items/Items.css'
