@@ -104,3 +104,17 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.mealplan {
+    background-color: #282c34;
+    min-height: 100vh;
+}
+
+.breakfast-top {
+    background-color: #282c34;
+    display: flex;
+    padding-top: 40px;
+    padding-left: 20px;
+    color: white;
+    border-bottom: 1px solid gray;
+}

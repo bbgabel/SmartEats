@@ -18,6 +18,7 @@ export default function Start() {
     const [body, setBody] = useState(null);
     const [desiredWeight, setDesiredWeight] = useState("");
 
+
     const handleAgeChange = (event) => {
         setAge(event.target.value);
     };
@@ -82,16 +83,18 @@ export default function Start() {
     body,
   }
 
+
+
   const sendApiRequest = () => {
     axios.post('http://localhost:3000/api', requestData)
     .then(response => {
-        // Handle the response from the server here
-        const calculatedValues = response.data;
-        console.log(calculatedValues);
-        // Update your component's state or perform any necessary actions
+        const mealData = response.data;
+        console.log(mealData);
+        console.log(mealData.breakfast);
+        console.log(mealData.breakfast.Calories);
       })
       .catch(error => {
-        // Handle any errors here
+        console.error("API Request Error:", error);
       })
       };
 
