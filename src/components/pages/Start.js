@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 //import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Slider from '../Items/Slider';
 import BodyType from '../Items/BodyType';
 import { Link } from 'react-router-dom';
@@ -8,31 +7,35 @@ import './Start.css';
 
 export default function Start() {
 
-    const [age, setAge] = useState("");
-    const [height, setHeight] = useState("");
-    const [weight, setWeight] = useState("");
-    const [sex, setSex] = useState("");
-    const [activity, setActivity] = useState("");
+    const [age, setAge] = useState(localStorage.getItem('age'));
+    const [height, setHeight] = useState(localStorage.getItem('height'));
+    const [weight, setWeight] = useState(localStorage.getItem('weight'));
+    const [sex, setSex] = useState(localStorage.getItem('sex'));
+    const [activity, setActivity] = useState(localStorage.getItem('activity'));
     const [valid, setValid] = useState(false);
     const [ready, setReady] = useState(false);
     const [body, setBody] = useState(null);
-    const [desiredWeight, setDesiredWeight] = useState("");
+    const [desiredWeight, setDesiredWeight] = useState(localStorage.getItem('desired'));
 
 
     const handleAgeChange = (event) => {
         setAge(event.target.value);
+        localStorage.setItem('age', event.target.value);
     };
 
     const handleHeightChange = (event) => {
         setHeight(event.target.value);
+        localStorage.setItem('height', event.target.value);
     }
 
     const handleSexChange = (event) => {
         setSex(event.target.value);
+        localStorage.setItem('sex', event.target.value);
     };
 
     const handleActivityChange = (event) => {
         setActivity(event.target.value);
+        localStorage.setItem('activity', event.target.value);
     };
 
     const handleWeightChange = (event) => {
@@ -41,23 +44,34 @@ export default function Start() {
 
         if (!isNaN(newInput) && newInput >= 80 && newInput <= 300) {
             setWeight(newInput);
+            localStorage.setItem('weight', event.target.value);
             setValid(true);
         } else {
             setWeight(input);
+            localStorage.setItem('weight', event.target.value);
             setValid(false);
         }
     }
 
-    const updateActiveButton = (buttonID) => {
-        setBody(buttonID);
-    }
+    useEffect(() => {
+        const storedWeight = localStorage.getItem('weight');
+        setBody(localStorage.getItem('bodytype'));
+        if (storedWeight) {
+          const parsedWeight = parseInt(storedWeight);
+          if (!isNaN(parsedWeight) && parsedWeight >= 80 && parsedWeight <= 300) {
+            setValid(true);
+          } else {
+            setValid(false);
+          }
+        }
+      }, []);
 
     const updateDesiredWeight = (num) => {
         setDesiredWeight(num);
     }
 
-    const checkResults = (age, height, weight, desiredWeight, sex, activity, body) => {
-        if (age && height && weight && desiredWeight && sex && activity && body) {
+    const checkResults = (age, height, valid, desiredWeight, sex, activity, body) => {
+        if (age && height && valid && desiredWeight && sex && activity && body) {
             setReady(true);
         } else {
             setReady(false);
@@ -65,38 +79,13 @@ export default function Start() {
     }
 
     useEffect(() => {
-        checkResults(age, height, weight, desiredWeight, sex, activity, body);
-    }, [age, height, weight, desiredWeight, sex, activity, body]);
+        checkResults(age, height, valid, desiredWeight, sex, activity, body);
+    }, [age, height, valid, desiredWeight, sex, activity, body]);
 
   const ageOptions = [];
   for (let age = 12; age <= 80; age++) {
     ageOptions.push(age);
   }
-
-  const requestData = {
-    age,
-    height,
-    weight,
-    desiredWeight,
-    sex,
-    activity,
-    body,
-  }
-
-
-
-  const sendApiRequest = () => {
-    axios.post('http://localhost:3000/api', requestData)
-    .then(response => {
-        const mealData = response.data;
-        console.log(mealData);
-        console.log(mealData.breakfast);
-        console.log(mealData.breakfast.Calories);
-      })
-      .catch(error => {
-        console.error("API Request Error:", error);
-      })
-      };
 
   const heightOptions = [];
     for (let i = 4; i <= 7; i++) {
@@ -112,8 +101,8 @@ export default function Start() {
             <div>
                 <div className="bottom">
                     {ready && (
-                    <Link to='/MealPlan' className="next" onClick={sendApiRequest}>
-                        See my plan!
+                    <Link to='/MealPlan' className="next">
+                        Continue
                         <br></br>
                     <i className="fas fa-arrow-right fa-xl"></i>
                     </Link>
@@ -198,7 +187,7 @@ export default function Start() {
                 </div>
 
                 <div>
-                    <BodyType updateActiveButton={updateActiveButton} updateDesiredWeight={updateDesiredWeight} />
+                    <BodyType updateDesiredWeight={updateDesiredWeight} />
                 </div>
             </div>
             <div className="bottom-filler">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Items.css';
 import lean from './img/lean.jpg';
 import jacked from './img/jacked.jpg';
@@ -6,15 +6,15 @@ import swole from './img/swole.jpg';
 
 
 
-export default function BodyType({updateActiveButton, updateDesiredWeight} ) {
+export default function BodyType({ updateDesiredWeight } ) {
 
-    const [activeButton, setActiveButton] = useState(null);
-    const [desiredWeight, setWeight] = useState("");
+    const [activeButton, setActiveButton] = useState(parseInt(localStorage.getItem('bodytype'), 10));
+    const [desiredWeight, setWeight] = useState(localStorage.getItem('desired'));
     const [valid, setValid] = useState(false);
 
     const handleClick = (buttonID) => {
         setActiveButton(buttonID);
-        updateActiveButton(buttonID);
+        localStorage.setItem('bodytype', buttonID);
     }
 
     const check = (event) => {
@@ -30,12 +30,26 @@ export default function BodyType({updateActiveButton, updateDesiredWeight} ) {
             setWeight(newInput);
             setValid(true);
             updateDesiredWeight(newInput);
+            localStorage.setItem('desired', event.target.value);
         } else {
             setWeight(input);
             setValid(false);
             updateDesiredWeight("");
+            localStorage.setItem('desired', event.target.value);
         }
     }
+
+    useEffect(() => {
+        const storedWeight = localStorage.getItem('desired');
+        if (storedWeight) {
+          const parsedWeight = parseInt(storedWeight);
+          if (!isNaN(parsedWeight) && parsedWeight >= 80 && parsedWeight <= 300) {
+            setValid(true);
+          } else {
+            setValid(false);
+          }
+        }
+      }, []);
 
     return (
         <div className="checkbox">
