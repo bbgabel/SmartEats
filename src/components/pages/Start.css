@@ -107,14 +107,33 @@
 
 .mealplan {
     background-color: #282c34;
-    min-height: 100vh;
+    min-height: 120vh;
 }
 
 .breakfast-top {
     background-color: #282c34;
-    display: flex;
+    display: center;
     padding-top: 40px;
     padding-left: 20px;
     color: white;
     border-bottom: 1px solid gray;
+}
+
+.food-display {
+    background-color: #282c34;
+    color: white;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    padding-top: 10px;
+}
+
+.label {
+    margin: 25px;
+    
+}
+
+.generate {
+    color: rgb(35, 185, 35);
+    cursor: pointer;
 }
