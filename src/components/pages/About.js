@@ -8,7 +8,8 @@ import Jack from '../Items/img/Jack.png';
 import Tucker from '../Items/img/Tucker.jpg';
 import Los from '../Items/img/Los.png';
 import Cole from '../Items/img/Cole.png';
-import nobody from '../Items/img/nobody.jpg';
+import Than from '../Items/img/Than.jpg';
+//import nobody from '../Items/img/nobody.jpg';
 
 export default function About() {
     return (
@@ -37,7 +38,7 @@ export default function About() {
                         <Profile image={Cole} name="Cole Brewster" role="Coordinator" text="My name is Cole Brewster and I'm a senior at Colorado State University studying Business Administration with a focus in Computer Information Systems. As a member of SmartEatz, I focus on making sure users can achieve any health goal they desire with ease. Together, we're on a mission to make healthy eating a lifestyle that is not only attainable but enjoyable for all. " />
                     </div>
                     <div>
-                        <Profile image={nobody} name="Empty" role="Empty" text="Description here" />
+                        <Profile image={Than} name="Than Phihung" role="Coordinator" text="My name is Phihung Than I'm a junior concentrating in CIS. I love being in the outdoors and spending time being active. One one favorite sports playing is basketball. I'm also one of the team members of SmartEatz." />
                     </div>
                 </div>
                 
