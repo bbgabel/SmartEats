@@ -134,7 +134,7 @@ const FoodItem = ({ name, calories, protein, carbs, fat, serving }) => {
       <button className="food-display">{name}</button>
       {isExpanded && (
         <div>
-          <p>Calories: {calories}g</p>
+          <p>Calories: {calories}</p>
           <p>Protein: {protein}g</p>
           <p>Carbs: {carbs}g</p>
           <p>Fat: {fat}g</p>
