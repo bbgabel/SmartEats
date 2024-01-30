@@ -137,3 +137,11 @@
     color: rgb(35, 185, 35);
     cursor: pointer;
 }
+
+.total {
+    color: #b37709;
+    font-weight: bold;
+    margin-top: 30px;
+    border-top: 2px dashed gray;
+    border-bottom: 2px dashed gray;
+}

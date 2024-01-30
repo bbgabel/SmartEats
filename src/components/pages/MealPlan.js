@@ -14,7 +14,6 @@ var body = localStorage.getItem('bodytype');
 export default function MealPlan() {
 
     useEffect(() => {
-    console.log("UPDATING!");
     age = localStorage.getItem('age');
     height = localStorage.getItem('height');
     weight = localStorage.getItem('weight');
@@ -49,22 +48,56 @@ export default function MealPlan() {
       }
 
       const [mealData, setMealData] = useState(null);
+      const [totalCalories, setTotalCalories] = useState(0);
+      const [totalProtein, setTotalProtein] = useState(0);
+      const [totalCarbs, setTotalCarbs] = useState(0);
+      const [totalFat, setTotalFat] = useState(0);
 
       const sendApiRequest = () => {
         axios.post('http://localhost:3000/api', requestData)
         .then(response => {
             const mealData = response.data;
             setMealData(mealData);
-            console.log(mealData.breakfast.Names);
+            findTotals();
           })
           .catch(error => {
             console.error("API Request Error:", error);
           })
           };
 
+          function findTotals() {
+            console.log("here")
+            let cals = 0;
+            let prot = 0;
+            let carb = 0;
+            let fat = 0;
+            for (let i  = 0; i < mealData.breakfast.Calories.length; i++) {
+              cals += mealData.breakfast.Calories[i];
+              prot += mealData.breakfast.Protein[i];
+              carb += mealData.breakfast.Carbs[i];
+              fat += mealData.breakfast.Fat[i];
+            }
+            for (let i  = 0; i < mealData.lunch.Calories.length; i++) {
+              cals += mealData.lunch.Calories[i];
+              prot += mealData.lunch.Protein[i];
+              carb += mealData.lunch.Carbs[i];
+              fat += mealData.lunch.Fat[i];
+            }
+            for (let i  = 0; i < mealData.dinner.Calories.length; i++) {
+              cals += mealData.dinner.Calories[i];
+              prot += mealData.dinner.Protein[i];
+              carb += mealData.dinner.Carbs[i];
+              fat += mealData.dinner.Fat[i];
+            }
+            setTotalCalories(cals);
+            setTotalProtein(Math.round(prot));
+            setTotalCarbs(Math.round(carb));
+            setTotalFat(Math.round(fat));
+          }
+
     return (
         <div className="Pre-Start">
-            <Slider text="Click to switch any meal"/>
+            <Slider text="Click on any food to see details"/>
             <div className="mealplan">
                 <div className="breakfast-top">
                 <i onClick = {sendApiRequest} className="fas fa-rotate-right fa-3x generate"></i>
@@ -119,6 +152,13 @@ export default function MealPlan() {
                           />
                           ))}
                           </ul>
+                          <br></br>
+                          <div className="total">
+                          <p>Total Calories: {totalCalories}</p>
+                          <p>Total Carbohydrates: {totalCarbs}</p>
+                          <p>Total Protein: {totalProtein}</p>
+                          <p>Total Fat: {totalFat}</p>
+                          </div>
                         </div>
                         )}
             </div>
