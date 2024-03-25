@@ -33,8 +33,8 @@ export default function Slider({text}) {
                 <i className="fas fa-users fa-xs"> About Us</i>
                 </Link>
                 <p />
-                <Link to="/Start" className="Menu-buttons">
-                <i className="fas fa-cloud-upload-alt fa-xs"> Start</i>
+                <Link to="/Chat" className="Menu-buttons">
+                <i className="fas fa-message fa-xs"> Chat</i>
                 </Link>
             </div>
 

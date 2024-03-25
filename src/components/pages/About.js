@@ -1,5 +1,5 @@
 import React from 'react';
-import './Start.css';
+import './Chat.css';
 import Slider from '../Items/Slider';
 import Profile from '../Items/Profile';
 

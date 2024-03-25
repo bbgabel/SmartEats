@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import Start from './components/pages/Start';
 import About from './components/pages/About';
-import MealPlan from './components/pages/MealPlan';
+import Chat from './components/pages/Chat';
 import logo from './components/Items/img/logo.jpg';
 import Slider from './components/Items/Slider';
 import './App.css';
@@ -15,7 +14,7 @@ function Home() {
         <Slider text="Welcome to SmartEatz!"/>
       <header className="App-header">
         <h3>Click the logo to started!</h3>
-        <Link to="/Start" className="App-button">
+        <Link to="/Chat" className="App-button">
           <img src={logo} className="App-logo" alt="logo" />
         </Link>
       </header>
@@ -28,9 +27,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Start" element={<Start />} />
         <Route path="/About" element={<About />} />
-        <Route path="/MealPlan" element={<MealPlan />} />
+        <Route path="/Chat" element={<Chat />} />
       </Routes>
     </BrowserRouter>
   );
