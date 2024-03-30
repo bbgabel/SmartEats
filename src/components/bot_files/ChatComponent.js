@@ -1,20 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function ChatComponent() {
     const [userInput, setUserInput] = useState('');
-    const [messages, setMessages] = useState([
-        { text: 'Welcome to SmartEatz. Before we start, would you mind providing me with your age?', sender: 'bot' }
-    ]);
-
-    const messagesEndRef = useRef(null);
+    const [botResponse, setBotResponse] = useState('Welcome to SmartEatz. Before we start, would you mind providing me with your age?');
 
     const sendApiRequest = (input) => {
-        axios.post('http://localhost:3000/chatbot', { input })
+        axios.post('http://localhost:3000/chatbot', input)
             .then(response => {
-                const newBotResponse = response.data;
-                const newMessages = [...messages, { text: newBotResponse, sender: 'bot' }];
-                setMessages(newMessages);
+                console.log(response.data);
+                setBotResponse(response.data);
+                // Do something with botResponse if needed
             })
             .catch(error => {
                 console.error("API Request Error:", error);
@@ -22,45 +18,29 @@ function ChatComponent() {
     };
 
     const handleInputChange = (event) => {
-        setUserInput(event.target.value);
+        const input = event.target.value;
+        setUserInput(input);
     };
 
     const handleSubmit = () => {
-        if (!userInput.trim()) return; // Don't send empty messages
-        const newUserMessage = { text: userInput, sender: 'user' };
-        setMessages([...messages, newUserMessage]);
-        setUserInput('');
-        sendApiRequest(userInput);
+        const input = userInput;
+        sendApiRequest(input);
     };
 
-    useEffect(() => {
-        scrollToBottom();
-    }, [messages]);
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
+    //eventually add pictures wtih async for botResponse on seventh question
 
     return (
-        <div className="chat-container">
-            <div className="message-container">
-                {messages.map((message, index) => (
-                    <div key={index} className={`message ${message.sender}`}>
-                        {message.text}
-                    </div>
-                ))}
-                <div ref={messagesEndRef} />
-            </div>
-            <div className="input-container">
-                <input
-                    className="textbox"
-                    placeholder="Say Hi!"
-                    type="text"
-                    value={userInput}
-                    onChange={handleInputChange}
-                />
-                <button onClick={handleSubmit}>Send</button>
-            </div>
+        <div>
+            <p>ChatBot Prototype</p>
+            <input
+                className="textbox"
+                placeholder="Say Hi!"
+                type="text"
+                value={userInput}
+                onChange={handleInputChange}
+            />
+            <button onClick={handleSubmit}>Submit</button>
+            <p>{botResponse}</p>
         </div>
     );
 }
