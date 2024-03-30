@@ -1,21 +1,17 @@
 import React from 'react';
+import ChatComponent from '../bot_files/ChatComponent';
 import Slider from '../Items/Slider';
-import Chatbot from 'react-chatbot-kit'
-import config from '../bot_files/config.js';
-import ActionProvider from '../bot_files/ActionProvider.js';
-import MessageParser from '../bot_files/MessageParser.js';
 import './Chat.css';
 
 export default function Chat() {
     return (
         <div className="Pre-Start">
             <Slider text="Type to chat now"/>
-            <div className="Chat">
-            <Chatbot config={config} actionProvider={ActionProvider} messageParser={MessageParser} />
+            <div className="Chat"> 
+            <ChatComponent />
               <p>hi</p>
               <CurvedLine />
             </div>
-
         </div>
     )}
 
