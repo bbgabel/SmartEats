@@ -3,15 +3,22 @@
 }
 
 .Chat {
-    background-color: #282c34;
-    min-height: 122vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    background-image: url('../Items/img/food-background.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 97vh;
 }
+
+.ChatIcon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffffff; 
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
 
 .bottom {
     background-color: #282c34;
