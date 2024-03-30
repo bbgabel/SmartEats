@@ -13,9 +13,13 @@ export default function Chat() {
 
     return (
         <div className="Pre-Start">
-            <Slider text="Type to chat now"/>
+            <Slider text="Press the message box to get started!"/>
             <div className="Chat">
-              <h1>Hi isem en tu</h1>
+              <p className="chat-text">
+                This is blank text currently. Here will be the description of the website and information about the team who developed it...
+                <br /> <br /> <br />
+                To start, you can press the chat box in the bottom right of your screen.
+              </p>
                 <div className="ChatIcon" onClick={toggleChat}><FaRegMessage /></div>
                 {isChatOpen && <ChatComponent />}
             </div>

@@ -77,7 +77,7 @@ function ChatComponent() {
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
                 />
-                <button onClick={handleSubmit}>
+                <button className="chat-button" onClick={handleSubmit}>
                 <IoIosSend />
                 </button>
 

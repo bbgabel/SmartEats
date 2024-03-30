@@ -4,6 +4,7 @@
     width: 300px; /* Adjust as needed */
     height: 400px; /* Adjust as needed */
     border: 2px solid #ccc;
+    background-color: rgba(194, 187, 187, 0.708);
     border-radius: 10px;
     overflow: hidden;
     bottom: 60px;
@@ -52,7 +53,7 @@
     outline: none;
 }
 
-button {
+.chat-button {
     padding: 8px;
     border: none;
     border-radius: 50%;

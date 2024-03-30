@@ -7,7 +7,12 @@
     background-size: cover;
     background-position: center;
     min-height: 97vh;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: center;
 }
+
 
 .ChatIcon {
     position: absolute;
@@ -19,6 +24,12 @@
     border-radius: 50%;
 }
 
+.chat-text {
+    margin-top: 100px;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 20px;
+}
 
 .bottom {
     background-color: #282c34;
