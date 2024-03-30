@@ -6,7 +6,7 @@ import { IoIosSend } from "react-icons/io";
 function ChatComponent() {
     const [userInput, setUserInput] = useState('');
     const [messages, setMessages] = useState([
-        { text: 'Welcome to SmartEatz. Before we start, would you mind providing me with your age?', sender: 'bot' }
+        { text: 'Welcome to SmartEatz! You can ask me questions and I will do my best to answer them! You can also type "input mode" for me to generate you a meal plan!', sender: 'bot' }
     ]);
 
     const messagesEndRef = useRef(null);
@@ -18,7 +18,8 @@ function ChatComponent() {
                 const newMessages = [...messages, { text: input, sender: 'user' }]; // Include user's input first
                 setMessages(newMessages);
                 setTimeout(() => {
-                    const updatedMessages = [...newMessages, { text: newBotResponse, sender: 'bot' }];
+                    const botResponseText = typeof newBotResponse === 'object' ? newBotResponse.input : newBotResponse;
+                    const updatedMessages = [...newMessages, { text: botResponseText, sender: 'bot' }];
                     setMessages(updatedMessages);
                 }, 1000);
             })
@@ -26,6 +27,7 @@ function ChatComponent() {
                 console.error("API Request Error:", error);
             });
     };
+    
     
 
     const handleInputChange = (event) => {
