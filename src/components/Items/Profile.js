@@ -1,17 +1,16 @@
-import React from 'react';
 import './Items.css';
 
-export default function Profile({image, name, text, role}) {
+export default function Profile({ image, name, text, role }) {
     return (
-        <div>
-            <div className="desc-name">{name}</div>
-            <label className="desc-role">{role}</label>
-            <div className="picture-frame">
-                <img src={image} alt="Gabel" className="profile-pic"/>
-                <div className="desc-profile">
-                    <label className="desc-font">{text}</label>
+        <div className="profile-card">
+            <div className="profile-top">
+                <img src={image} alt={name} className="profile-avatar" />
+                <div>
+                    <p className="pill subtle">{role}</p>
+                    <h4 className="profile-name">{name}</h4>
                 </div>
             </div>
+            <p className="profile-text">{text}</p>
         </div>
-    )
+    );
 }

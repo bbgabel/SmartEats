@@ -4,112 +4,167 @@ import lean from './img/lean.jpg';
 import jacked from './img/jacked.jpg';
 import swole from './img/swole.jpg';
 
+export default function BodyType({ updateDesiredWeight }) {
+  const [activeButton, setActiveButton] = useState(parseInt(localStorage.getItem('bodytype'), 10));
+  const [desiredWeight, setWeight] = useState(localStorage.getItem('desired'));
+  const [valid, setValid] = useState(false);
+  const [preferences, setPreferences] = useState({
+    lactose: false,
+    gluten: false,
+    nut: false,
+  });
 
+  const handleClick = (buttonID) => {
+    setActiveButton(buttonID);
+    localStorage.setItem('bodytype', buttonID);
+  };
 
-export default function BodyType({ updateDesiredWeight } ) {
+  const handleWeightChange = (event) => {
+    const input = event.target.value;
+    const newInput = parseInt(input, 10);
 
-    const [activeButton, setActiveButton] = useState(parseInt(localStorage.getItem('bodytype'), 10));
-    const [desiredWeight, setWeight] = useState(localStorage.getItem('desired'));
-    const [valid, setValid] = useState(false);
-
-    const handleClick = (buttonID) => {
-        setActiveButton(buttonID);
-        localStorage.setItem('bodytype', buttonID);
+    if (!isNaN(newInput) && newInput >= 80 && newInput <= 300) {
+      setWeight(newInput);
+      setValid(true);
+      updateDesiredWeight(newInput);
+      localStorage.setItem('desired', event.target.value);
+    } else {
+      setWeight(input);
+      setValid(false);
+      updateDesiredWeight('');
+      localStorage.setItem('desired', event.target.value);
     }
+  };
 
-    const check = (event) => {
-        console.log(event.target.checked);
-        console.log(event.target.id);
+  const togglePreference = (key) => {
+    setPreferences((prev) => {
+      const next = { ...prev, [key]: !prev[key] };
+      localStorage.setItem(key, next[key]);
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    const storedWeight = localStorage.getItem('desired');
+    const storedPrefs = {
+      lactose: localStorage.getItem('lactose') === 'true',
+      gluten: localStorage.getItem('gluten') === 'true',
+      nut: localStorage.getItem('nut') === 'true',
+    };
+    setPreferences(storedPrefs);
+
+    if (storedWeight) {
+      const parsedWeight = parseInt(storedWeight, 10);
+      if (!isNaN(parsedWeight) && parsedWeight >= 80 && parsedWeight <= 300) {
+        setValid(true);
+      } else {
+        setValid(false);
+      }
     }
+  }, []);
 
-    const handleWeightChange = (event) => {
-        const input = event.target.value;
-        const newInput = parseInt(input);
+  return (
+    <div className="bodytype-section">
+      <div className="bodytype-grid">
+        <BodyTypeCard
+          title="Ectomorph"
+          description="Naturally lean with a fast metabolism. We prioritize gradual gains."
+          image={lean}
+          active={activeButton === 1}
+          onClick={() => handleClick(1)}
+        />
+        <BodyTypeCard
+          title="Mesomorph"
+          description="Athletic build with balanced metabolism. We dial macros to maintain strength."
+          image={jacked}
+          active={activeButton === 2}
+          onClick={() => handleClick(2)}
+        />
+        <BodyTypeCard
+          title="Endomorph"
+          description="Softer build with slower metabolism. We focus on sustainable, steady progress."
+          image={swole}
+          active={activeButton === 3}
+          onClick={() => handleClick(3)}
+        />
+      </div>
 
-        if (!isNaN(newInput) && newInput >= 80 && newInput <= 300) {
-            setWeight(newInput);
-            setValid(true);
-            updateDesiredWeight(newInput);
-            localStorage.setItem('desired', event.target.value);
-        } else {
-            setWeight(input);
-            setValid(false);
-            updateDesiredWeight("");
-            localStorage.setItem('desired', event.target.value);
-        }
-    }
-
-    useEffect(() => {
-        const storedWeight = localStorage.getItem('desired');
-        if (storedWeight) {
-          const parsedWeight = parseInt(storedWeight);
-          if (!isNaN(parsedWeight) && parsedWeight >= 80 && parsedWeight <= 300) {
-            setValid(true);
-          } else {
-            setValid(false);
-          }
-        }
-      }, []);
-
-    return (
-        <div className="checkbox">
-            <div className="label">
-                        <label>Ectomorph</label>
-                        <button className={`bodytype ${activeButton === 1 ? 'blue-button' : ''}`}
-                        onClick={() => handleClick(1)}>
-                            <img src={lean} alt="lean" className="bodytype"></img>
-                        </button>
-                    </div>
-                    <div className="label">
-                        <label>Mesomorph</label>
-                        <button className={`bodytype ${activeButton === 2 ? 'blue-button' : ''}`}
-                        onClick={() => handleClick(2)}>
-                            <img src={jacked} alt="lean" className="bodytype"></img>
-                        </button>
-                    </div>
-                    <div className="label">
-                        <label>Endomorph</label>
-                        <button className={`bodytype ${activeButton === 3 ? 'blue-button' : ''}`}
-                        onClick={() => handleClick(3)}>
-                            <img src={swole} alt="lean" className="bodytype"></img>
-                        </button>
-                    </div>
-
-                    <div>
-                    <div className="desc">
-                        <div>
-                        <label className="desc">Desired Weight (lbs):</label>
-                        </div>
-                        <input
-                        className="textbox"
-                        placeholder="Enter weight"
-                        type="text"
-                        value={desiredWeight}
-                        onChange={handleWeightChange}
-                        />
-                        {!valid ? (
-                            <i className="fas fa-x fa-l red"></i>
-                        ) : (
-                            <i className="fas fa-check fa-xl green"></i>
-                        )}
-                        
-                        </div>
-                        <br></br><br></br><br></br><br></br><br></br>
-                        <div>
-                            <label>Lactose Intolerant</label>
-                        </div>
-                        <input type="checkbox" id="lactose" onClick={check} className="box" />
-                        <br></br> <br></br> <br></br>
-                        <div>
-                            <label>Gluten Free</label>
-                        </div>
-                        <input type="checkbox" id="gluten" onClick={check} className="box" />
-                        <br></br> <br></br> <br></br>
-                        <div>
-                            <label>Nut Free</label>
-                        </div>
-                        <input type="checkbox" id="nut" onClick={check} className="box" />
-                    </div>
+      <div className="preference-grid">
+        <div className="input-card full">
+          <div className="field">
+            <label className="field-label">Desired weight (lbs)</label>
+            <p className="microtext">Pick a healthy target so we can right-size your plan.</p>
+            <input
+              className="textbox"
+              placeholder="Enter weight"
+              type="text"
+              value={desiredWeight || ''}
+              onChange={handleWeightChange}
+            />
+            {!valid ? (
+              <div className="status-row warning">
+                <i className="fas fa-circle-exclamation"></i>
+                <span>Enter 80 - 300 lbs</span>
+              </div>
+            ) : (
+              <div className="status-row success">
+                <i className="fas fa-check"></i>
+                <span>Target locked in</span>
+              </div>
+            )}
+          </div>
         </div>
-    )
+
+        <div className="input-card full">
+          <div className="field">
+            <label className="field-label">Dietary preferences</label>
+            <p className="microtext">We keep these in mind when generating meals.</p>
+            <div className="preference-row">
+              <PreferenceToggle
+                label="Lactose intolerant"
+                checked={preferences.lactose}
+                onChange={() => togglePreference('lactose')}
+              />
+              <PreferenceToggle
+                label="Gluten free"
+                checked={preferences.gluten}
+                onChange={() => togglePreference('gluten')}
+              />
+              <PreferenceToggle
+                label="Nut free"
+                checked={preferences.nut}
+                onChange={() => togglePreference('nut')}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+const BodyTypeCard = ({ title, description, image, active, onClick }) => (
+  <button className={`bodytype-card ${active ? 'active' : ''}`} onClick={onClick}>
+    <img src={image} alt={title} className="bodytype-image" />
+    <div className="bodytype-content">
+      <p className="pill subtle">Body type</p>
+      <h4>{title}</h4>
+      <p className="microtext">{description}</p>
+    </div>
+    {active && (
+      <span className="checkmark">
+        <i className="fas fa-check"></i>
+      </span>
+    )}
+  </button>
+);
+
+const PreferenceToggle = ({ label, checked, onChange }) => (
+  <label className={`preference-toggle ${checked ? 'checked' : ''}`}>
+    <input type="checkbox" checked={checked} onChange={onChange} />
+    <span className="toggle-pill">
+      <span className="toggle-thumb" />
+    </span>
+    <span className="toggle-label">{label}</span>
+  </label>
+);

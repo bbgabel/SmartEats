@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-//import { Link } from 'react-router-dom';
 import Slider from '../Items/Slider';
 import BodyType from '../Items/BodyType';
 import { Link } from 'react-router-dom';
@@ -96,103 +95,147 @@ export default function Start() {
     }
 
     return (
-        <div class="Pre-Start">
-            <Slider text="Please enter your information"/>
-            <div>
-                <div className="bottom">
+        <div className="Pre-Start">
+            <Slider text="Tell us about yourself to craft your plan" />
+            <div className="page-shell">
+                <div className="section-header">
+                    <div>
+                        <p className="pill subtle">Step 1</p>
+                        <h2>Your lifestyle snapshot</h2>
+                        <p className="lede">
+                            Provide a few quick details. We use them to calculate calories,
+                            protein, carbs, and fats for a balanced day.
+                        </p>
+                    </div>
                     {ready && (
-                    <Link to='/MealPlan' className="next">
-                        Continue
-                        <br></br>
-                    <i className="fas fa-arrow-right fa-xl"></i>
-                    </Link>
+                        <Link to='/MealPlan' className="primary-btn">
+                            Generate my plan <i className="fas fa-arrow-right"></i>
+                        </Link>
                     )}
                 </div>
-                <div class="Start">
-                    <div className="desc">
-                        <label className="desc">Age:      </label>
-                        <select value={age} onChange={handleAgeChange} className="dropdown">
-                        <option value="">-- Select Age --</option>
-                        {ageOptions.map((age) => (
-                        <option> {age} </option>
-                        ))}
-                        </select>
-                        {age && (
-                            <label>
-                            <i className="fas fa-check fa-xl green"></i>
-                            </label>
-                        )}
+                <div className="card-grid">
+                    <div className="input-card">
+                        <div className="field">
+                            <label className="field-label">Age</label>
+                            <p className="microtext">We tailor recommendations for your stage of life.</p>
+                            <select value={age} onChange={handleAgeChange} className="dropdown">
+                                <option value="">Select age</option>
+                                {ageOptions.map((ageOption) => (
+                                    <option key={ageOption}>{ageOption}</option>
+                                ))}
+                            </select>
+                            {age && (
+                                <div className="status-row success">
+                                    <i className="fas fa-check"></i>
+                                    <span>Captured</span>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="field">
+                            <label className="field-label">Height</label>
+                            <p className="microtext">Choose the height that feels closest to you.</p>
+                            <select value={height} onChange={handleHeightChange} className="dropdown">
+                                <option value="">Select height</option>
+                                {heightOptions.map((heightOption) => (
+                                    <option key={heightOption}>{heightOption}</option>
+                                ))}
+                            </select>
+                            {height && (
+                                <div className="status-row success">
+                                    <i className="fas fa-check"></i>
+                                    <span>Noted</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
-                    <div className="desc">
-                        <label className="desc">Height:      </label>
-                        <select value={height} onChange={handleHeightChange} className="dropdown">
-                        <option value="">-- Select Height --</option>
-                        {heightOptions.map((height) => (
-                        <option> {height} </option>
-                        ))}
-                        </select>
-                        {height && (
-                            <label>
-                            <i className="fas fa-check fa-xl green"></i>
-                            </label>
-                        )}
+                    <div className="input-card">
+                        <div className="field">
+                            <label className="field-label">Weight (lbs)</label>
+                            <p className="microtext">We validate a healthy range so the plan stays realistic.</p>
+                            <input
+                                className="textbox"
+                                placeholder="Enter weight"
+                                type="text"
+                                value={weight}
+                                onChange={handleWeightChange}
+                            />
+                            {!valid ? (
+                                <div className="status-row warning">
+                                    <i className="fas fa-circle-exclamation"></i>
+                                    <span>Enter 80 - 300 lbs</span>
+                                </div>
+                            ) : (
+                                <div className="status-row success">
+                                    <i className="fas fa-check"></i>
+                                    <span>Looks good</span>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="field">
+                            <label className="field-label">Gender</label>
+                            <p className="microtext">Helps us set realistic calorie goals.</p>
+                            <select value={sex} onChange={handleSexChange} className="dropdown">
+                                <option value="">Select gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                            {sex && (
+                                <div className="status-row success">
+                                    <i className="fas fa-check"></i>
+                                    <span>Saved</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
-                    <div className="desc">
-                        <label className="desc">Weight (lbs):      </label>
-                        <input
-                        className="textbox"
-                        placeholder="Enter weight"
-                        type="text"
-                        value={weight}
-                        onChange={handleWeightChange}
-                        />
-                        {!valid ? (
-                            <i className="fas fa-x fa-l red"></i>
-                        ) : (
-                            <i className="fas fa-check fa-xl green"></i>
-                        )}
-                        
-                    </div>
-
-                    <div className="desc">
-                        <label className="desc">Gender:      </label>
-                        <select value={sex} onChange={handleSexChange} className="dropdown">
-                        <option value="">-- Select Gender --</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        </select>
-                        {sex && (
-                            <label>
-                            <i className="fas fa-check fa-xl green"></i>
-                            </label>
-                        )}
-                    </div>
-
-                    <div className="desc">
-                        <label className="desc">Activity Level:      </label>
-                        <select value={activity} onChange={handleActivityChange} className="dropdown">
-                        <option value="">-- Select Activity --</option>
-                        <option>Not Active (1-2 Days/Week)</option>
-                        <option>Active (3-4 Days/Week)</option>
-                        <option>Extremely Active (5-7 Days/Week)</option>
-                        </select>
-                        {activity && (
-                            <label>
-                            <i className="fas fa-check fa-xl green"></i>
-                            </label>
-                        )}
+                    <div className="input-card">
+                        <div className="field">
+                            <label className="field-label">Activity level</label>
+                            <p className="microtext">Fine tune the energy your day requires.</p>
+                            <select value={activity} onChange={handleActivityChange} className="dropdown">
+                                <option value="">Select activity</option>
+                                <option>Not Active (1-2 Days/Week)</option>
+                                <option>Active (3-4 Days/Week)</option>
+                                <option>Extremely Active (5-7 Days/Week)</option>
+                            </select>
+                            {activity && (
+                                <div className="status-row success">
+                                    <i className="fas fa-check"></i>
+                                    <span>Dialed in</span>
+                                </div>
+                            )}
+                        </div>
+                        <div className="field">
+                            <div className="highlight-box">
+                                <p className="microtext">Ready to move on?</p>
+                                <h3>Head to body type and preferences next.</h3>
+                                <p className="lede">Set your target weight, body type, and dietary needs.</p>
+                                {ready ? (
+                                    <Link to='/MealPlan' className="primary-btn ghost">
+                                        Continue to meal plan
+                                    </Link>
+                                ) : (
+                                    <p className="microtext muted">Fill out all fields to continue.</p>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <div className="section-header">
+                    <div>
+                        <p className="pill subtle">Step 2</p>
+                        <h2>Body type & preferences</h2>
+                        <p className="lede">Choose your physique focus and set a target weight with dietary flags.</p>
+                    </div>
+                </div>
                 <div>
                     <BodyType updateDesiredWeight={updateDesiredWeight} />
                 </div>
             </div>
-            <div className="bottom-filler">
-
-            </div>
         </div>
-    )
+    );
 }

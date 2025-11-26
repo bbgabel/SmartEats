@@ -13,6 +13,6 @@ export default function Hamburger() {
 
 function Bar() {
     return (
-        <div class="Bar"></div>
+        <div className="Bar"></div>
     );
 }
